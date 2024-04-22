@@ -32,4 +32,3 @@ public class Subject implements Serializable {
 		this.school = school;
 	}
  }
->>>>>>> branch 'master' of https://github.com/AyaTakaonigiri/Exam.git
