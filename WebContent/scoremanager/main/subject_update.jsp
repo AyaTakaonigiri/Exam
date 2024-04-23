@@ -22,11 +22,12 @@
 				</div>
 				<br>
 
-				<!--登録ボタン-->
+				<!--変更ボタン-->
 				<button
-					style="background-color: blue; border-color: blue; color: white"
+					style="background-color: #4169e1; border-color: gainsboro; color: white"
 					type="submit">変更</button>
-				<br> <a href="SubjectList.action">戻る</a>
+				<p></p>
+				<a href="SubjectList.action">戻る</a>
 			</form>
 		</section>
 	</c:param>
