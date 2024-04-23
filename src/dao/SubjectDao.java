@@ -22,7 +22,7 @@ public class SubjectDao extends Dao{
 
 				try {
 					//プリペアードステートメントにSQL文をセット
-					statement = connection.prepareStatement("SELECT * FROM SUBJECT  where school_cd=? and cd=?");
+					statement = connection.prepareStatement("SELECT * FROM SUBJECT where school_cd=? and cd=?");
 					//プリペアードステートメント
 					statement.setString(1, school.getCd());
 					statement.setString(2, cd);
@@ -38,7 +38,6 @@ public class SubjectDao extends Dao{
 						//リザルトセットが存在する場合
 						//学生インスタンスに検索結果をセット
 						subject.setCd(rSet.getString("cd"));
-						subject.setSchool(schoolDao.get(rSet.getString("school")));
 						subject.setName(rSet.getString("name"));
 					} else {
 						//リザルトセットが存在しない場合
@@ -122,10 +121,66 @@ public class SubjectDao extends Dao{
 		return list;
 	}
 
-//	public boolean save(Subject subject){
-//
-//	}
-//
+	public boolean save(Subject subject) throws Exception{
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+		//実行件数
+		int count = 0;
+
+		try {
+			//データベースから科目を取得
+			Subject Sold = get(subject.getCd(), subject.getSchool());
+			if (Sold==null) {
+				//科目が存在しなかった場合
+				//プリペアードステートメントにinsert文をセット
+				statement = connection.prepareStatement("insert into subject(cd, name, school_cd) values (?, ?, ?)");
+				//プリペアードステートメントに値をバインド
+				statement.setString(1,  subject.getCd());
+				statement.setString(2, subject.getName());
+				statement.setString(3, subject.getSchool().getCd());
+			} else {
+				//科目が存在した場合
+				//プリペアードステートメントにupdate文をセット
+				statement = connection.prepareStatement("update subject set name=? where cd=?");
+				//プリペアードステートメントに値をバインド
+				statement.setString(1, subject.getName());
+				statement.setString(2, subject.getCd());
+			}
+
+			//プリペアードステートメントを実行
+			count = statement.executeUpdate();
+		} catch(Exception e) {
+			throw e;
+		} finally {
+			//プリペアードステートメントを閉じる
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch(SQLException sqle) {
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch(SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+
+		if(count > 0) {
+			//実行件数が１件以上ある場合
+			return true;
+		} else {
+			//実行件数が０件の場合
+			return false;
+		}
+	}
+
 //	public boolean delete(Subject subject){
 //
 //	}
