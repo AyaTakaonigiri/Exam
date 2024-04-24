@@ -20,6 +20,12 @@ public class SubjectUpdateAction extends Action {
 		cd = request.getParameter("cd");
 		name = request.getParameter("name");
 
+		if (cd==null && name==null) {
+			cd = (String)session.getAttribute("code");
+			name = (String)session.getAttribute("name");
+			request.setAttribute("error", "科目が存在していません");
+		}
+
 		//レスポンス値をセット
 		request.setAttribute("code", cd);
 		request.setAttribute("name", name);

@@ -144,7 +144,6 @@ public class SubjectDao extends Dao{
 				statement.setString(1, subject.getName());
 				statement.setString(2, subject.getCd());
 			}
-
 			//プリペアードステートメントを実行
 			count = statement.executeUpdate();
 		} catch(Exception e) {
