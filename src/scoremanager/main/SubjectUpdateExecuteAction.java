@@ -36,6 +36,7 @@ public class SubjectUpdateExecuteAction extends Action {
 		if(cd != null && name != null) {
 			subDao.save(subject);
 			req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
+
 		} else {
 			//科目コードが存在しない場合SubjectUpdate.actionにフォワードする
 			res.sendRedirect("SubjectUpdate.action");
