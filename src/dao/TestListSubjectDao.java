@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Student;
+import bean.School;
+import bean.Subject;
 import bean.TestListSubject;
 
 public class TestListSubjectDao extends Dao {
 
-	private String baseSql = "select * from student where school_cd=? and ent_year=? and class_num=?";
+	private String baseSql = "SELECT student.ent_year, student.class_num, student.no AS student_no, student.name AS student_name, MAX(CASE WHEN test.no = 1 THEN test.point ELSE NULL END) AS point_1, MAX(CASE WHEN test.no = 2 THEN test.point ELSE NULL END) AS point_2 FROM student LEFT JOIN test ON student.no = test.student_no LEFT JOIN subject ON subject.cd = test.subject_cd WHERE student.ent_year = ? AND student.class_num = ? GROUP BY student.ent_year, student.class_num, student.no, student.name";
 
 	private List<TestListSubject> postFilter(ResultSet rSet) throws SQLException{
 		//リストを初期化
@@ -22,10 +23,19 @@ public class TestListSubjectDao extends Dao {
 			while (rSet.next()) {
 				if (rSet != null) {
 					TestListSubject testSub = new TestListSubject();
+					//入学年度
 					testSub.setEntYear(rSet.getInt("ent_year"));
-					testSub.setStudentNo(rSet.getString("no"));
-					testSub.setStudentName(rSet.getString("name"));
+					//学生番号
+					testSub.setStudentNo(rSet.getString("student_no"));
+					//学生名
+					testSub.setStudentName(rSet.getString("student_name"));
+					//クラス番号
 					testSub.setClassNum(rSet.getString("class_num"));
+					//テストの点数
+					testSub.putPoint(1, rSet.getInt("point_1"));
+					testSub.putPoint(2, rSet.getInt("point_2"));
+
+					//リストに追加
 					list.add(testSub);
 				}
 			}
@@ -35,7 +45,7 @@ public class TestListSubjectDao extends Dao {
 		return list;
 	}
 
-	public List<TestListSubject> filter (Student student) throws Exception {
+	public List<TestListSubject> filter (int entYear, String classNum, Subject subject, School school) throws Exception {
 		//リストを初期化
 		List<TestListSubject> list = new ArrayList<>();
 		//コネクションを確立
@@ -44,20 +54,14 @@ public class TestListSubjectDao extends Dao {
 		PreparedStatement statement = null;
 		//リザルトセット
 		ResultSet rSet = null;
-		//SQL文の条件①
-		String condition = "select cd from subject where ";
-		//SQL文の条件②
-		String subNamesort = "select name from subject LEFT JOIN test on subject.cd = test.subject_cd where cd=?";
 
 		try {
 			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql + condition);
-			//プリペアードステートメントに学校コード
-			statement.setString(1, student.getSchool().getCd());
-			//プリペアードステートメントに入学年度
-			statement.setInt(2, student.getEntYear());
-			//プリペアードステートメントにクラス番号
-			statement.setString(3, student.getClassNum());
+			statement = connection.prepareStatement(baseSql);
+			//入学年度
+			statement.setInt(1, entYear);
+			//クラス
+			statement.setString(2, classNum);
 			//プリペアードステートメントを実行
 			rSet = statement.executeQuery();
 			//リストへ格納

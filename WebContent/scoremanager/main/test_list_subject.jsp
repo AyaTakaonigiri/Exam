@@ -12,9 +12,10 @@
 
 	<c:param name="content">
 		<section class="me-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照（科目）</h2>
 
-			<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px; border-color: #696969;">
+			<div
+				style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px; border-color: #696969;">
 				<!-- 検索フォーム、 -->
 				<form action="TestListSubjectExecute.action" method="get">
 					<div class="row vorder mx-3 mb-3 py-2 align-itemscenter rounded"
@@ -90,26 +91,33 @@
 				</form>
 			</div>
 
-				<c:choose>
+			<c:choose>
 				<c:when test="${sublist.size()>0}">
-					<div>科目:${subject.name}件</div>
+					<div>科目:${subject.name}</div>
 					<table class="table table-hover">
 						<tr>
 							<th>入学年度</th>
 							<th>クラス</th>
 							<th>学生番号</th>
 							<th>氏名</th>
-							<th>１回></th>
+							<th>１回</th>
 							<th>２回</th>
 						</tr>
 						<c:forEach var="sublist" items="${sublist}">
 							<tr>
 								<td>${sublist.entYear}</td>
 								<td>${sublist.classNum}</td>
-								<td>${sublist.studentno}</td>
-								<td>${sublist.studentname}</td>
-								<td>${sublist.point}</td>
-								<td>${sublist.point}</td>
+								<td>${sublist.studentNo}</td>
+								<td>${sublist.studentName}</td>
+								<c:set var="point" value="${sublist.points}" />
+								<c:forEach items="${point}" var="p">
+    								<c:if test="${p.key==1}">
+    									<td>${p.value}</td>
+    								</c:if>
+    								<c:if test="${p.key==2}">
+    									<td>${p.value}</td>
+    								</c:if>
+								</c:forEach>
 								<td class="text-center">
 						</c:forEach>
 					</table>
