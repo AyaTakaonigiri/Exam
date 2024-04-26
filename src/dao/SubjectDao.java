@@ -12,6 +12,7 @@ import bean.Subject;
 
 public class SubjectDao extends Dao{
 
+	//科目1つの取得
 	public Subject get(String cd, School school) throws Exception {
 		//科目インスタンスを初期化
 		Subject subject = new Subject();
@@ -22,6 +23,7 @@ public class SubjectDao extends Dao{
 
 		try {
 			//プリペアードステートメントにSQL文をセット
+
 			statement = connection.prepareStatement("SELECT * FROM SUBJECT where school_cd=? and cd=?");
 			//プリペアードステートメント
 			statement.setString(1, school.getCd());
@@ -63,7 +65,6 @@ public class SubjectDao extends Dao{
 		return subject;
 
 	}
-
 	public List<Subject> filter(School school) throws Exception{
 		//リストを初期化
 

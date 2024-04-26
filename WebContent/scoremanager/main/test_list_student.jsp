@@ -13,7 +13,6 @@
 	<c:param name="content">
 		<section class="me-4">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
-
 			<div
 				style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px; border-color: #696969;">
 				<!-- 検索フォーム、 -->
@@ -91,8 +90,8 @@
 				</form>
 			</div>
 
+			<div>氏名:${student.name}(${student.no})</div>
 			<c:choose>
-				<div>氏名:${student.name}(${student.no})</div>
 				<c:when test="${stulist.size()>0}">
 					<table class="table table-hover">
 						<tr>
