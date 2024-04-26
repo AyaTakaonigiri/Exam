@@ -22,7 +22,7 @@ public class SubjectListAction extends Action {
 
 		SubjectDao subDao = new SubjectDao();
 
-		//ログインユーザーの学校の科目一覧を取得ー＞リストに格納
+		//ログインユーザーの学校の科目一覧を取得
 		subjects = subDao.filter(teacher.getSchool());
 
 		//レスポンス値をセット
