@@ -15,6 +15,10 @@
 					<p>科目コード</p>
 					${code} <input type="hidden" value="${code}">
 				</div>
+				<!-- 変更中に削除された場合のエラーメッセージ -->
+				<div style="color: #ffd700;">
+					<c:if test="${not empty error}">${error}</c:if>
+				</div>
 				<br>
 				<div class="col-4">
 					<p>科目名</p>
