@@ -13,7 +13,6 @@ import bean.Subject;
 import bean.Teacher;
 import bean.TestListSubject;
 import dao.ClassNumDao;
-import dao.SubjectDao;
 import dao.TestListSubjectDao;
 import tool.Action;
 
@@ -25,18 +24,16 @@ public class TestListSubjectExecuteAction extends Action {
 		LocalDate todaysDate = LocalDate.now();//LcalDateインスタンスを取得
 		int year = todaysDate.getYear();//現在の年を取得
 		ClassNumDao cNumDao = new ClassNumDao();//クラス番号Daoを初期化
-		SubjectDao subDao = new SubjectDao();
 		List<Subject> subjects = null;//科目のリスト（空）
+		List<TestListSubject> sublist = null;//テスト結果のリスト（空）
 
-		String entYearStr = "";
-		String classNum = "";
-		String sub = "";
+		String entYearStr = null;
+		String classNum = null;
+		String sub = null;
 		int entYear = 0;
 		Student student = new Student();
 		Subject subject = new Subject();
 		TestListSubjectDao testSubDao = new TestListSubjectDao();
-//		StudentDao sDao = new StudentDao();
-//		Map<String, String> errors = new HashMap<>();//エラーメッセージ
 
 		//リクエストパラメータの取得２
 		entYearStr = request.getParameter("f1");
@@ -55,8 +52,6 @@ public class TestListSubjectExecuteAction extends Action {
 		//ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		List<String> clist = cNumDao.filter(teacher.getSchool());
 
-		//ログインユーザーの学校コードを基に科目の一覧を取得
-		subjects = subDao.filter(teacher.getSchool());
 
 		//リストを初期化
 		List<Integer> entYearSet = new ArrayList<>();
@@ -70,11 +65,12 @@ public class TestListSubjectExecuteAction extends Action {
 		student.setClassNum(classNum);
 
 		subject.setName(sub);
-
-//		//ログインユーザーの学校コードをもとにクラス番号の一覧を取得
-//		List<String> list = cNumDao.filter(teacher.getSchool());
-
-		List<TestListSubject> sublist = testSubDao.filter(entYear, classNum, subject, teacher.getSchool());
+		if (entYear != 0 && !classNum.equals("0")&& !sub.equals("0")) {
+			sublist = testSubDao.filter(entYear, classNum, subject, teacher.getSchool());
+		} else {
+			request.setAttribute("error", "入学年度とクラスと科目を選択してください");
+			request.getRequestDispatcher("test_list.jsp").forward(request, response);
+		}
 
 		//レスポンス値をセット６
 		//フォーム用＞リクエストに入学年度をセット
@@ -85,6 +81,8 @@ public class TestListSubjectExecuteAction extends Action {
 		request.setAttribute("subject_set", subjects);
 
 		request.setAttribute("f1", entYearStr);
+		request.setAttribute("f2", classNum);
+		request.setAttribute("f3", sub);
 		//科目参照リスト
 		request.setAttribute("sublist", sublist);
 		//科目リスト

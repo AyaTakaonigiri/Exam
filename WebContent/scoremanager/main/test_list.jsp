@@ -14,7 +14,8 @@
 		<section class="me-4">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
 
-			<div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px; border-color: #696969;">
+			<div
+				style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px; border-color: #696969;">
 				<!-- 検索フォーム、 -->
 				<form action="TestListSubjectExecute.action" method="get">
 					<div class="row vorder mx-3 mb-3 py-2 align-itemscenter rounded"
@@ -58,11 +59,14 @@
 							</select>
 						</div>
 						<br>
-
 						<div class="col-2 text-center">
 							<button class="btn btn-secondary" id="filter-button">検索</button>
 						</div>
 						<br>
+						<!-- 条件が三つ指定されてない場合のエラーメッセージ -->
+						<div style="color: #ffd700;">
+							<c:if test="${not empty error}">${error}</c:if>
+						</div>
 					</div>
 				</form>
 				<!-- ここまで科目別参照フォーム -->

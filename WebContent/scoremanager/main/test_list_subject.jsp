@@ -12,7 +12,7 @@
 
 	<c:param name="content">
 		<section class="me-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照（科目）</h2>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績一覧（科目）</h2>
 
 			<div
 				style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px; border-color: #696969;">
@@ -59,7 +59,6 @@
 							</select>
 						</div>
 						<br>
-
 						<div class="col-2 text-center">
 							<button class="btn btn-secondary" id="filter-button">検索</button>
 						</div>
@@ -111,12 +110,13 @@
 								<td>${sublist.studentName}</td>
 								<c:set var="point" value="${sublist.points}" />
 								<c:forEach items="${point}" var="p">
-    								<c:if test="${p.key==1}">
-    									<td>${p.value}</td>
-    								</c:if>
-    								<c:if test="${p.key==2}">
-    									<td>${p.value}</td>
-    								</c:if>
+									<c:if test="${p.key==1}">
+										<td>${p.value}</td>
+									</c:if>
+									<c:if test="${p.key==2}">
+										<td>${p.value}</td>
+									</c:if>
+
 								</c:forEach>
 								<td class="text-center">
 						</c:forEach>
