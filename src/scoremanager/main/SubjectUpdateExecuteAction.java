@@ -13,9 +13,9 @@ import tool.Action;
 public class SubjectUpdateExecuteAction extends Action {
 
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		HttpSession session = req.getSession();//セッション
+		HttpSession session = request.getSession();//セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");//ログインユーザー
 
 		String cd = "";
@@ -25,21 +25,19 @@ public class SubjectUpdateExecuteAction extends Action {
 		SubjectDao subDao = new SubjectDao();
 
 		cd = subject.getCd();
-		name = req.getParameter("name");
+		name = request.getParameter("name");
 		school = teacher.getSchool();
 
 		subject.setCd(cd);//科目コード
 		subject.setName(name);//科目名
 		subject.setSchool(school);
 
-		//科目コードを科目名ががnullでないときsaveを実行
+		//科目コードと科目名がnullでないときsaveを実行
 		if(cd != null && name != null) {
 			subDao.save(subject);
-			req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
-
+			request.getRequestDispatcher("subject_update_done.jsp").forward(request, response);
 		} else {
-			//科目コードが存在しない場合SubjectUpdate.actionにフォワードする
-			res.sendRedirect("SubjectUpdate.action");
+			request.getRequestDispatcher("SubjectUpdate.action").forward(request, response);
 		}
 	}
 }

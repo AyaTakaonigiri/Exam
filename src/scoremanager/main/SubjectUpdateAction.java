@@ -21,7 +21,7 @@ public class SubjectUpdateAction extends Action {
 		name = request.getParameter("name");
 
 		//変更中に削除された場合セッションから取得し、エラーメッセージを表示する
-		if (cd==null && name==null) {
+		if (cd==null || name==null) {
 			cd = (String)session.getAttribute("code");
 			name = (String)session.getAttribute("name");
 			request.setAttribute("error", "科目が存在していません");
