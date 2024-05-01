@@ -80,4 +80,40 @@ public class TestListStudentDao extends Dao {
 		}
 		return list;
 	}
+	public List<TestListStudent> filterBySubject(Student student, String subjectCd) throws Exception {
+	    List<TestListStudent> list = new ArrayList<>();
+	    Connection connection = getConnection();
+	    PreparedStatement statement = null;
+	    ResultSet rSet = null;
+
+	    try {
+	        // SQL文を科目コードでフィルタリングするように変更
+	        String sql = baseSql + " AND subject.cd = ?";
+	        statement = connection.prepareStatement(sql);
+	        statement.setString(1, student.getNo());
+	        statement.setString(2, subjectCd);
+	        rSet = statement.executeQuery();
+	        list = postFilter(rSet);
+	    } catch (Exception e) {
+	        throw e;
+	    } finally {
+			//プリペアードステートメントを閉じる
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if(connection != null) {
+				try{
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+	    return list;
+	}
 }

@@ -91,6 +91,7 @@
 			</div>
 
 			<div>氏名:${student.name}(${student.no})</div>
+			<div class="text-align: left;"><a href="TestListStudentAverage.action?f4=${f4}">成績平均</a></div>
 			<c:choose>
 				<c:when test="${stulist.size()>0}">
 					<table class="table table-hover">

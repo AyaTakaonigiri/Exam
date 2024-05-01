@@ -53,8 +53,9 @@ public class TestListStudentExecuteAction extends Action {
 		}
 		//studentをセット
 		student.setNo(no);
-
+		//学生参照リスト
 		List<TestListStudent> stulist = testStuDao.filter(student);
+		//学生番号を基に学生情報を取得
 		Student students = sDao.get(no);
 
 		//レスポンス値をセット６

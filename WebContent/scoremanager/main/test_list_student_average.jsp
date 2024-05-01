@@ -12,8 +12,7 @@
 
 	<c:param name="content">
 		<section class="me-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績一覧（科目）</h2>
-
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績一覧（学生）</h2>
 			<div
 				style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 10px; border-color: #696969;">
 				<!-- 検索フォーム、 -->
@@ -59,6 +58,7 @@
 							</select>
 						</div>
 						<br>
+
 						<div class="col-2 text-center">
 							<button class="btn btn-secondary" id="filter-button">検索</button>
 						</div>
@@ -90,48 +90,24 @@
 				</form>
 			</div>
 
+			<div>氏名:${student.name}(${student.no})</div>
+			<div class="text-align: left;">
+				<a href="TestListStudentExecute.action?f4=${f4}">成績一覧</a>
+			</div>
 			<c:choose>
-				<c:when test="${sublist.size()>0}">
-					<div>科目:${subject.name}</div>
+				<c:when test="${stulist.size()>0}">
 					<table class="table table-hover">
 						<tr>
-							<th>入学年度</th>
-							<th>クラス</th>
-							<th>学生番号</th>
-							<th>氏名</th>
-							<th>１回</th>
-							<th>２回</th>
+							<th>科目名</th>
+							<th>科目コード</th>
 							<th>平均</th>
 						</tr>
-						<c:forEach var="sublist" items="${sublist}">
+						<c:forEach var="subject" items="${subject_set}">
+							<c:set var="average" value="${averageMap[subject.cd]}" />
 							<tr>
-								<td>${sublist.entYear}</td>
-								<td>${sublist.classNum}</td>
-								<td>${sublist.studentNo}</td>
-								<td>${sublist.studentName}</td>
-								<c:set var="point" value="${sublist.points}" />
-								<c:set var="scoreRegistered" value="false" />
-								<c:set var="total" value="0" />
-								<c:set var="count" value="0" />
-
-								<c:forEach items="${point}" var="p">
-									<c:if test="${p.key==1}">
-										<td>${p.value != 0 ? p.value : '-'}</td>
-										<c:set var="scoreRegistered" value="true" />
-										<c:set var="total" value="0" />
-										<c:set var="count" value="0" />
-									</c:if>
-									<c:if test="${p.key==2}">
-										<td>${p.value != 0 ? p.value : '-'}</td>
-										<c:set var="scoreRegistered" value="true" />
-									</c:if>
-									<c:if test="${p.key==1 || p.key==2}">
-										<c:set var="count" value="${count + 1}" />
-										<c:set var="total" value="${total + p.value}" />
-									</c:if>
-								</c:forEach>
-								<td>${total / count}</td>
-								<td class="text-center">
+								<td>${subject.name}</td>
+								<td>${subject.cd}</td>
+								<td><c:out value="${average}" /></td>
 							</tr>
 						</c:forEach>
 					</table>
