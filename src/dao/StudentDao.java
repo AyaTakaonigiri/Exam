@@ -49,7 +49,6 @@ public class StudentDao extends Dao {
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
 		}
-
 		return list;
 	}
 

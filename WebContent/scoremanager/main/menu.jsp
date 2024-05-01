@@ -16,7 +16,6 @@
 			<div style="flex-wrap: wrap">
 				<p>成績管理</p>
 				<p><a href="TestRegist.action">成績登録</a></p>
-				<p><a href="SubjectList.action">成績登録</a></p>
 				<p><a href="">成績参照</a></p>
 			</div>
 
