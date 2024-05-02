@@ -1,4 +1,4 @@
-<%-- 学生一覧JSP --%>
+<%-- 学生平均参照JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!--taglibディレクティブの記述-->
@@ -92,7 +92,7 @@
 
 			<div>氏名:${student.name}(${student.no})</div>
 			<div class="text-align: left;">
-				<a href="TestListStudentExecute.action?f4=${f4}">成績一覧</a>
+				<a href="TestListStudentExecute.action?f4=${f4}">成績一覧へ</a>
 			</div>
 			<c:choose>
 				<c:when test="${stulist.size()>0}">

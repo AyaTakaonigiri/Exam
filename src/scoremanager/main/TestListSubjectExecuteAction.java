@@ -67,11 +67,13 @@ public class TestListSubjectExecuteAction extends Action {
 		//studentをセット
 		student.setEntYear(entYear);
 		student.setClassNum(classNum);
-
+		//科目をセット
 		subject.setName(sub);
+		//科目参照リスト
 		if (entYear != 0 && !classNum.equals("0")&& !sub.equals("0")) {
 			sublist = testSubDao.filter(entYear, classNum, subject, teacher.getSchool());
 		} else {
+			//nullの場合はエラーメッセージをセット
 			request.setAttribute("error", "入学年度とクラスと科目を選択してください");
 			request.getRequestDispatcher("TestList.action").forward(request, response);
 		}
