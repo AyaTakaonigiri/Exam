@@ -1,4 +1,4 @@
-<%-- 学生一覧JSP --%>
+<%-- 学生参照JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!--taglibディレクティブの記述-->
@@ -91,6 +91,7 @@
 			</div>
 
 			<div>氏名:${student.name}(${student.no})</div>
+			<a href="TestListStudentAverage.action?f4=${f4}">成績平均へ</a>
 			<c:choose>
 				<c:when test="${stulist.size()>0}">
 					<table class="table table-hover">

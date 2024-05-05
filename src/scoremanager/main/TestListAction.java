@@ -54,9 +54,6 @@ public class TestListAction extends Action {
 		request.setAttribute("class_num_set", clist);
 		//フォーム用＞リクエストに科目をセット
 		request.setAttribute("subject_set", subjects);
-
-
-
 		//JSPへフォワード７
 		request.getRequestDispatcher("test_list.jsp").forward(request, response);
 

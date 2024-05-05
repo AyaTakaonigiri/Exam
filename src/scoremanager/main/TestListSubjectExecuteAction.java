@@ -13,6 +13,7 @@ import bean.Subject;
 import bean.Teacher;
 import bean.TestListSubject;
 import dao.ClassNumDao;
+import dao.SubjectDao;
 import dao.TestListSubjectDao;
 import tool.Action;
 
@@ -23,7 +24,8 @@ public class TestListSubjectExecuteAction extends Action {
 
 		LocalDate todaysDate = LocalDate.now();//LcalDateインスタンスを取得
 		int year = todaysDate.getYear();//現在の年を取得
-		ClassNumDao cNumDao = new ClassNumDao();//クラス番号Daoを初期化
+		ClassNumDao cNumDao = new ClassNumDao();//クラス番号Dao
+		SubjectDao subDao = new SubjectDao();//科目Dao
 		List<Subject> subjects = null;//科目のリスト（空）
 		List<TestListSubject> sublist = null;//テスト結果のリスト（空）
 
@@ -52,6 +54,8 @@ public class TestListSubjectExecuteAction extends Action {
 		//ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		List<String> clist = cNumDao.filter(teacher.getSchool());
 
+		//ログインユーザーの学校コードを基に科目の一覧を取得
+		subjects = subDao.filter(teacher.getSchool());
 
 		//リストを初期化
 		List<Integer> entYearSet = new ArrayList<>();
@@ -63,13 +67,15 @@ public class TestListSubjectExecuteAction extends Action {
 		//studentをセット
 		student.setEntYear(entYear);
 		student.setClassNum(classNum);
-
+		//科目をセット
 		subject.setName(sub);
+		//科目参照リスト
 		if (entYear != 0 && !classNum.equals("0")&& !sub.equals("0")) {
 			sublist = testSubDao.filter(entYear, classNum, subject, teacher.getSchool());
 		} else {
+			//nullの場合はエラーメッセージをセット
 			request.setAttribute("error", "入学年度とクラスと科目を選択してください");
-			request.getRequestDispatcher("test_list.jsp").forward(request, response);
+			request.getRequestDispatcher("TestList.action").forward(request, response);
 		}
 
 		//レスポンス値をセット６

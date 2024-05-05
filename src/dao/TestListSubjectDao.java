@@ -34,7 +34,6 @@ public class TestListSubjectDao extends Dao {
 					//テストの点数
 					testSub.putPoint(1, rSet.getInt("point_1"));
 					testSub.putPoint(2, rSet.getInt("point_2"));
-
 					//リストに追加
 					list.add(testSub);
 				}
