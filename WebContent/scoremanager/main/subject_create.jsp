@@ -14,17 +14,21 @@
 				<div class="col-4">
 					<p>科目コード</p>
 					<input type="text" name="cd" placeholder="科目コードを入力してください" required><br>
-					<c:if test="${not empty cderrors}">
-						<c:forEach var="cdE" items="${cderrors}">${cdE}</c:forEach>
-					</c:if>
+					<div style="color: #ffd700;">
+						<c:if test="${not empty cderrors}">
+							<c:forEach var="cdE" items="${cderrors}">${cdE}</c:forEach>
+						</c:if>
+					</div>
 					<br>
 				</div>
 				<div class="col-4">
 					<p>科目名</p>
 					<input type="text" name="name" placeholder="科目名を入力してください" required><br>
-					<c:if test="${not empty nameerrors}">
-						<c:forEach var="nameE" items="${nameerrors}">${nameE}</c:forEach>
-					</c:if>
+					<div style="color: #ffd700;">
+						<c:if test="${not empty nameerrors}">
+							<c:forEach var="nameE" items="${nameerrors}">${nameE}</c:forEach>
+						</c:if>
+					</div>
 					<br> <br>
 				</div>
 

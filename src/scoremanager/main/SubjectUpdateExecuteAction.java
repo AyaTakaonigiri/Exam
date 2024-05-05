@@ -21,20 +21,26 @@ public class SubjectUpdateExecuteAction extends Action {
 		String cd = "";
 		String name = "";
 		School school = new School();
+		Subject subject = new Subject();
+		SubjectDao subDao = new SubjectDao();
 
-		cd = (String)session.getAttribute("code");
+		cd = subject.getCd();
 		name = req.getParameter("name");
 		school = teacher.getSchool();
 
-		SubjectDao subDao = new SubjectDao();
-		Subject subject = new Subject();
 		subject.setCd(cd);//科目コード
 		subject.setName(name);//科目名
 		subject.setSchool(school);
 
-		subDao.save(subject);
-		req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
+		//科目コードを科目名ががnullでないときsaveを実行
+		if(cd != null && name != null) {
+			subDao.save(subject);
+			req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
 
+		} else {
+			//科目コードが存在しない場合SubjectUpdate.actionにフォワードする
+			res.sendRedirect("SubjectUpdate.action");
+		}
 	}
 }
 

@@ -68,7 +68,7 @@ public class TestRegistAction extends Action {
 		}
 		req.setAttribute("f1", entyearStr);
 		if(subject!=null){
-			req.setAttribute("f5", subject.getName());
+			req.setAttribute("f5", subject);
 		}
 
 
@@ -80,6 +80,7 @@ public class TestRegistAction extends Action {
 				students = sDao.filter(teacher.getSchool(),entYear ,classnumStr, true);
 			}
 		}
+		
 		//リストを初期化
 		List<Integer> entYearSet = new ArrayList<>();
 		//10年前から10年後まで年をリストに追加

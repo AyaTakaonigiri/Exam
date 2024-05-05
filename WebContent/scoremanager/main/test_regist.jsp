@@ -56,24 +56,26 @@
 		<c:choose>
 			<c:when test="${tests.size()>0}">
 				<form action="TestRegistExecute.action" method="get">
-					<div>科目:${f5}(${f4}回)</div>
+					<div>科目:${f5.getName()}(${f4}回)</div>
 					<table class="table table-hover">
-
 						<tr>
 							<th>入学年度</th>
 							<th>クラス</th>
 							<th>学生番号</th>
 							<th>氏名</th>
 							<th>点数</th>
-
 						</tr>
-
 						<c:forEach var="tests" items="${tests}">
+							<input type="hidden" name="subject_${tests.student().getNo()}" value="${f5.getCd()}"/>
+							<input type="hidden" name="num_${tests.student().getNo()}" value="${f4}"/>
 							<c:if test="${tests.student().isAttend()}">
 								<tr>
 									<td>${tests.student().getEntYear()}</td>
-									<td>${tests.classNum}</td>
+										<input type="hidden" name="entyear_${tests.student().getNo()}" value="${tests.student().getEntYear()}"/>
+									<td>${tests.getClassNum()}</td>
+										<input type="hidden" name="classnum_${tests.student().getNo()}" value="${tests.getClassNum()}"/>
 									<td>${tests.student().getNo()}</td>
+										<input type="hidden" name="no_${tests.student().getNo()}" value="${tests.student().getNo()}"/>
 									<td>${tests.student().getName()}</td>
 									<td><input type="text" name="point_${tests.student().getNo()}" value="${tests.point}"></td>
 								</tr>

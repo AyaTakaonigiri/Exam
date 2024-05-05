@@ -12,11 +12,10 @@
 
 		<div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
 			style="height: 10rem; background-color: lightgreen;">
-
 			<div style="flex-wrap: wrap">
 				<p>成績管理</p>
 				<p><a href="TestRegist.action">成績登録</a></p>
-				<p><a href="">成績参照</a></p>
+				<p><a href="TestList.action">成績参照</a></p>
 			</div>
 
 		</div>
