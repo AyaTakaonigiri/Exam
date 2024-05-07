@@ -69,9 +69,15 @@ public class TestListStudentAverageAction extends Action {
                 testCount++;
             }
 
-            // 科目の平均点を計算
-            double averageScore = testCount > 0 ? totalScore / testCount : 0;
-            averageMap.put(subject.getCd(), averageScore);
+            if (testCount == 2) {
+                // テストが２回完了しているとき科目の平均点を計算
+                double averageScore = totalScore / testCount;
+                averageMap.put(subject.getCd(), averageScore);
+            } else {
+            	// テストが２回完了していないときは0をput
+            	double averageScore = 0;
+            	averageMap.put(subject.getCd(), averageScore);
+            }
         }
 
         // 平均点をリクエスト属性に設定

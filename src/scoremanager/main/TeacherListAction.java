@@ -33,7 +33,7 @@ public class TeacherListAction extends Action {
         request.setAttribute("teachers", teachers);
 
         if (!"admin".equals(teacher.getId())) {
-            request.setAttribute("error", "このアカウントはこのページへのアクセス権限がありません。");
+            request.setAttribute("error", "このアカウントはページへのアクセス権限がありません。");
             request.getRequestDispatcher("/auth_error.jsp").forward(request, response);
             return;
         }

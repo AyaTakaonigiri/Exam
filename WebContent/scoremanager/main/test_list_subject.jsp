@@ -101,7 +101,6 @@
 							<th>氏名</th>
 							<th>１回</th>
 							<th>２回</th>
-							<th>平均</th>
 						</tr>
 						<c:forEach var="sublist" items="${sublist}">
 							<tr>
@@ -110,28 +109,12 @@
 								<td>${sublist.studentNo}</td>
 								<td>${sublist.studentName}</td>
 								<c:set var="point" value="${sublist.points}" />
-								<c:set var="scoreRegistered" value="false" />
-								<c:set var="total" value="0" />
-								<c:set var="count" value="0" />
-
 								<c:forEach items="${point}" var="p">
 									<c:if test="${p.key==1}">
-										<td>${p.value != 0 ? p.value : '-'}</td>
-										<c:set var="scoreRegistered" value="true" />
-										<c:set var="total" value="0" />
-										<c:set var="count" value="0" />
-									</c:if>
+										<td>${p.value != null ? p.value : '-'}</td></c:if>
 									<c:if test="${p.key==2}">
-										<td>${p.value != 0 ? p.value : '-'}</td>
-										<c:set var="scoreRegistered" value="true" />
-									</c:if>
-									<c:if test="${p.key==1 || p.key==2}">
-										<c:set var="count" value="${count + 1}" />
-										<c:set var="total" value="${total + p.value}" />
-									</c:if>
+										<td>${p.value != null ? p.value : '-'}</td></c:if>
 								</c:forEach>
-								<td>${total / count}</td>
-								<td class="text-center">
 							</tr>
 						</c:forEach>
 					</table>

@@ -64,8 +64,9 @@ public class TestListSubject implements Serializable {
 	}
 
 	//回数と得点をpointsに追加するセッター
-	public void putPoint(int key, int value) {
-		 points.put(key, value);
+	public void putPoint(int key, Object object) {
+		 points.put(key, (Integer) object);
 	}
+
 
 }

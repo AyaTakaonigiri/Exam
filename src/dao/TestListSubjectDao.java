@@ -19,26 +19,24 @@ public class TestListSubjectDao extends Dao {
 		//リストを初期化
 		List<TestListSubject> list = new ArrayList<>();
 		try {
-			//リザルトセットを全権操作
 			while (rSet.next()) {
-				if (rSet != null) {
-					TestListSubject testSub = new TestListSubject();
-					//入学年度
-					testSub.setEntYear(rSet.getInt("ent_year"));
-					//学生番号
-					testSub.setStudentNo(rSet.getString("student_no"));
-					//学生名
-					testSub.setStudentName(rSet.getString("student_name"));
-					//クラス番号
-					testSub.setClassNum(rSet.getString("class_num"));
-					//テストの点数
-					testSub.putPoint(1, rSet.getInt("point_1"));
-					testSub.putPoint(2, rSet.getInt("point_2"));
-					//リストに追加
-					list.add(testSub);
+				TestListSubject testSub = new TestListSubject();
+				// TestListSubject の各フィールドに値を設定する
+				testSub.setEntYear(rSet.getInt("ent_year"));
+				testSub.setStudentNo(rSet.getString("student_no"));
+				testSub.setStudentName(rSet.getString("student_name"));
+				testSub.setClassNum(rSet.getString("class_num"));
+				testSub.putPoint(1, rSet.getInt("point_1"));
+				if (rSet.wasNull()) {
+					testSub.putPoint(1, null);
 				}
+				testSub.putPoint(2, rSet.getInt("point_2"));
+				if (rSet.wasNull()) {
+					testSub.putPoint(2, null);
+				}
+				list.add(testSub);
 			}
-		} catch (NullPointerException e) {
+		}  catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 		return list;
