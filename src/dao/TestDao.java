@@ -62,7 +62,8 @@ public class TestDao extends Dao {
 					t.setStudent(student);
 					t.setClassNum(student.getClassNum());
 					t.setSchool(student.getSchool());
-
+					t.setPoint(666);
+					System.out.println(t.getPoint());
 					list.add(t);
 				}
 				flag=0;

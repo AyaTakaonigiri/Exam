@@ -30,8 +30,9 @@ public class TestRegistExecuteAction extends Action {
 		List<Student> students = studentDao.filter(teacher.getSchool(), isAttend);
 		List<Test> tests = new ArrayList<>();
 		//その後番号を抽出してreq.getParameterで中身に入ったものだけ更新
+
 		for(int i=0; i<students.size(); i++){
-			if(req.getParameter("point_"+students.get(i).getNo()) != null){
+			if(req.getParameter("point_"+students.get(i).getNo())!=null && req.getParameter("point_"+students.get(i).getNo())!=""){
 				//学生番号
 				String studentno = req.getParameter("no_"+students.get(i).getNo());
 				//点数
