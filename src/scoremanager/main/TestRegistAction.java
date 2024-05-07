@@ -2,7 +2,9 @@ package scoremanager.main;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +43,7 @@ public class TestRegistAction extends Action {
 		int year = todaysDate.getYear();//現在の年を取得
 		SubjectDao subjectDao = new SubjectDao();//科目Daoを初期化
 		TestDao testDao = new TestDao();
+		Map<String, String> errors = new HashMap<>();//エラーメッセージ
 
 		//リクエストパラメータの取得２
 		entyearStr = req.getParameter("f1");
@@ -80,7 +83,11 @@ public class TestRegistAction extends Action {
 				students = sDao.filter(teacher.getSchool(),entYear ,classnumStr, true);
 			}
 		}
-		
+		else {
+			errors.put("f1", "入学年度、科目、クラス、テストの回数の全てを選択してください。");
+			req.setAttribute("errors", errors);
+		}
+
 		//リストを初期化
 		List<Integer> entYearSet = new ArrayList<>();
 		//10年前から10年後まで年をリストに追加
