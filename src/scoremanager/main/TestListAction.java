@@ -28,8 +28,6 @@ public class TestListAction extends Action {
 		//リクエストパラメータの取得２
 		//なし
 
-
-
 		//DBからデータ取得３
 		//ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		List<String> clist = cNumDao.filter(teacher.getSchool());
