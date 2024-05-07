@@ -42,7 +42,6 @@ public class TestListSubjectExecuteAction extends Action {
 		classNum = request.getParameter("f2");
 		sub =  request.getParameter("f3");
 
-
 		////場所を変えた
 		//ビジネスロジック４
 		if(entYearStr != null) {
@@ -93,7 +92,6 @@ public class TestListSubjectExecuteAction extends Action {
 		request.setAttribute("sublist", sublist);
 		//科目リスト
 		request.setAttribute("subject", subject);
-
 
 		//JSPへフォワード７
 		request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);
