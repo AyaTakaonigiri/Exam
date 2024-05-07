@@ -23,7 +23,8 @@
 					style="background-color: #dc143c; border-color: #dc143c; color: white"
 					type="submit" name="削除">削除</button>
 			</form>
-			<br> <a href="SubjectList.action">戻る</a>
+			<br>
+			<a href="SubjectList.action">戻る</a>
 		</section>
 	</c:param>
 </c:import>
