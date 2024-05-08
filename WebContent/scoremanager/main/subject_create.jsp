@@ -3,13 +3,17 @@
 <!--taglibディレクティブの記述-->
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/common/base.jsp">
+	<c:param name="title">
+		得点管理システム
+	</c:param>
+
+	<c:param name="scripts"></c:param>
+
 	<c:param name="content">
 		<!--選択された情報をSubjectCreateExecuteActionに送る-->
 		<form action="SubjectCreateExecute.action" method="post">
 			<section class="me-4">
 				<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報登録</h2>
-
-
 				<!--サーブレット側に送るデータを入力する-->
 				<div class="col-4">
 					<p>科目コード</p>

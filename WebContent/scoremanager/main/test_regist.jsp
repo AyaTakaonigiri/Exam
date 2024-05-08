@@ -2,11 +2,15 @@
 <!--taglibディレクティブの記述-->
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/common/base.jsp">
-<c:param name="title">
-	得点管理システム
-</c:param>
+
+	<c:param name="title">
+		得点管理システム
+	</c:param>
+
+	<c:param name="scripts"></c:param>
 	<c:param name="content">
 		<form action="TestRegist.action" method="get">
+		<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
 			<div class="row border mx-2 mb-3 py-2 align-items-center rounded" id="filter">
 				<div class="col-2">
 					<label class="form-label" for="student-f1-select">入学年度</label>

@@ -23,9 +23,16 @@ public class SubjectUpdateExecuteAction extends Action {
 		School school = new School();
 		Subject subject = new Subject();
 		SubjectDao subDao = new SubjectDao();
+<<<<<<< HEAD
 		cd = subDao.get(cd, teacher.getSchool()).getCd();
+=======
+
+		cd = request.getParameter("cd");
+>>>>>>> branch 'master' of https://github.com/AyaTakaonigiri/Exam.git
 		name = request.getParameter("name");
 		school = teacher.getSchool();
+
+		subject = subDao.get(cd, school);
 
 		subject.setCd(cd);//科目コード
 		subject.setName(name);//科目名
