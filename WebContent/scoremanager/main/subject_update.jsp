@@ -11,7 +11,7 @@
 				<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報変更</h2>
 				<div class="col-4">
 					<p>科目コード</p>
-					${code} <input type="hidden" value="${code}">
+					${code} <input type="hidden" name="cd" value="${code}">
 				</div>
 				<!-- 変更中に削除された場合のエラーメッセージ -->
 				<div style="color: #ffd700;">

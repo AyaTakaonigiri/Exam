@@ -18,19 +18,19 @@ public class SubjectUpdateExecuteAction extends Action {
 		HttpSession session = request.getSession();//セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");//ログインユーザー
 
-		String cd = "";
+		String cd = request.getParameter("cd");
 		String name = "";
 		School school = new School();
 		Subject subject = new Subject();
 		SubjectDao subDao = new SubjectDao();
-
-		cd = subject.getCd();
+		cd = subDao.get(cd, teacher.getSchool()).getCd();
 		name = request.getParameter("name");
 		school = teacher.getSchool();
 
 		subject.setCd(cd);//科目コード
 		subject.setName(name);//科目名
-		subject.setSchool(school);
+		subject.setSchool(teacher.getSchool());
+		System.out.println(teacher.getSchool());
 
 		//科目コードと科目名がnullでないときsaveを実行
 		if(cd != null && name != null) {
