@@ -16,9 +16,6 @@
 			<!--選択された情報をSubjectDeleteExecuteActionに送る-->
 			<form action="SubjectDeleteExecute.action" method="post">
 				<!--削除の確認-->
-				<p style="background-color: whitesmoke;">
-					<font size="5">学生情報削除</font>
-				</p>
 				<div class="col-4">
 					<label class="form-label">
 						<p>「${name}(${cd})」を削除してもよろしいですか</p>

@@ -12,7 +12,7 @@
 		<!--選択された情報をloginに送る-->
 		<form action="StudentCreateExecute.action" method="post">
 			<!--サーブレット側に送るデータを入力する-->
-			<p style="background-color: whitesmoke;"><font size="5">学生情報登録</font></p>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報登録</h2>
 			<div class="col-4">
 				<label class="form-label" for="student-f1-select">入学年度</label>
 				<select class="form-select" id="student-f1-select" name="ent_year" required>

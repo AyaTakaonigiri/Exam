@@ -14,8 +14,6 @@
 		<form action="SubjectCreateExecute.action" method="post">
 			<section class="me-4">
 				<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報登録</h2>
-
-
 				<!--サーブレット側に送るデータを入力する-->
 				<div class="col-4">
 					<p>科目コード</p>
