@@ -9,8 +9,8 @@
 	<c:param name="scripts"></c:param>
 
 	<c:param name="content">
-		<p>学生情報登録</p>
-		<p>登録が完了しました</p>
+	<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報登録</h2>
+		<p style="background-color: #7ebea5; padding: 8px; width: 100%; text-align: center;">登録が完了しました</p>
 		<a href="StudentCreate.action">戻る</a>
 		<a href="StudentList.action">学生一覧</a>
 	</c:param>
