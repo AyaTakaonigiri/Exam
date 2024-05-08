@@ -2,11 +2,7 @@
 <!--taglibディレクティブの記述-->
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/common/base.jsp">
-<<<<<<< HEAD
-<c:param name="title">
-	得点管理システム
-</c:param>
-=======
+
 	<c:param name="title">
 		得点管理システム
 	</c:param>
