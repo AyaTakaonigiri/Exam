@@ -12,12 +12,12 @@
 	<c:param name="content">
 		<!--選択された情報をSubjectUpdateExecuteActionに送る-->
 		<section class="me-4">
-			<form action="SubjectUpdateExecute.action" method="post">
+			<form action="SubjectUpdateExecute.action?cd=${code}" method="post">
 				<!--サーブレット側に送るデータを入力する-->
 				<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報変更</h2>
 				<div class="col-4">
 					<p>科目コード</p>
-					${code} <input type="hidden" name="cd" value="${code}">
+					${code} <input type="hidden" value="${code}">
 				</div>
 				<!-- 変更中に削除された場合のエラーメッセージ -->
 				<div style="color: #ffd700;">

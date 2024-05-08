@@ -23,10 +23,10 @@ public class SubjectDao extends Dao{
 
 		try {
 			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement("SELECT * FROM SUBJECT where school_cd=? and cd=?");
+			statement = connection.prepareStatement("SELECT * FROM SUBJECT where cd=? and school_cd=?");
 			//プリペアードステートメント
-			statement.setString(1, school.getCd());
-			statement.setString(2, cd);
+			statement.setString(1, cd);
+			statement.setString(2, school.getCd());
 
 			//プリペアードステートメントを実行
 			ResultSet rSet = statement.executeQuery();
@@ -36,6 +36,7 @@ public class SubjectDao extends Dao{
 				//学生インスタンスに検索結果をセット
 				subject.setCd(rSet.getString("cd"));
 				subject.setName(rSet.getString("name"));
+				subject.setSchool(school);
 			} else {
 				//リザルトセットが存在しない場合
 				//学生インスタンスにnullをセット
@@ -62,8 +63,8 @@ public class SubjectDao extends Dao{
 			}
 		}
 		return subject;
-
 	}
+
 	public List<Subject> filter(School school) throws Exception{
 		//リストを初期化
 
