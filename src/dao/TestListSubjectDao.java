@@ -13,7 +13,7 @@ import bean.TestListSubject;
 
 public class TestListSubjectDao extends Dao {
 
-	private String baseSql = "SELECT student.ent_year, student.class_num, student.no AS student_no, student.name AS student_name, MAX(CASE WHEN test.no = 1 THEN test.point ELSE NULL END) AS point_1, MAX(CASE WHEN test.no = 2 THEN test.point ELSE NULL END) AS point_2 FROM student LEFT JOIN test ON student.no = test.student_no LEFT JOIN subject ON subject.cd = test.subject_cd WHERE student.ent_year = ? AND student.class_num = ? AND subject.name = ? GROUP BY student.ent_year, student.class_num, student.no, student.name";
+	private String baseSql = "SELECT student.ent_year, student.class_num, student.no AS student_no, student.name AS student_name, MAX(CASE WHEN test.no = 1 THEN test.point ELSE NULL END) AS point_1, MAX(CASE WHEN test.no = 2 THEN test.point ELSE NULL END) AS point_2 FROM student LEFT JOIN test ON student.no = test.student_no LEFT JOIN subject ON subject.cd = test.subject_cd WHERE student.ent_year = ? AND student.class_num = ? AND subject.name = ? AND student.school_cd = ? GROUP BY student.ent_year, student.class_num, student.no, student.name";
 
 	private List<TestListSubject> postFilter(ResultSet rSet) throws SQLException{
 		//リストを初期化
@@ -61,6 +61,8 @@ public class TestListSubjectDao extends Dao {
 			statement.setString(2, classNum);
 			//科目
 			statement.setString(3, subject.getName());
+			//学校
+			statement.setString(4, school.getCd());
 			//プリペアードステートメントを実行
 			rSet = statement.executeQuery();
 			//リストへ格納

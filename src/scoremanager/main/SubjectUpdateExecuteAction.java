@@ -24,9 +24,11 @@ public class SubjectUpdateExecuteAction extends Action {
 		Subject subject = new Subject();
 		SubjectDao subDao = new SubjectDao();
 
-		cd = subject.getCd();
+		cd = request.getParameter("cd");
 		name = request.getParameter("name");
 		school = teacher.getSchool();
+
+		subject = subDao.get(cd, school);
 
 		subject.setCd(cd);//科目コード
 		subject.setName(name);//科目名
