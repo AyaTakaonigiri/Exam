@@ -70,6 +70,8 @@
 							<th>学生番号</th>
 							<th>氏名</th>
 							<th>点数</th>
+
+
 						</tr>
 						<c:forEach var="tests" items="${tests}">
 							<input type="hidden" name="subject_${tests.student().getNo()}" value="${f5.getCd()}"/>
@@ -94,9 +96,6 @@
 					</div>
 				</form>
 			</c:when>
-			<c:otherwise>
-				<div>学生情報が存在しませんでした</div>
-			</c:otherwise>
 		</c:choose>
 	</c:param>
 </c:import>
