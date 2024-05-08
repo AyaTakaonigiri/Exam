@@ -62,8 +62,8 @@ public class TestDao extends Dao {
 					t.setStudent(student);
 					t.setClassNum(student.getClassNum());
 					t.setSchool(student.getSchool());
+					//666→存在しない得点→JSPの方で空白にする
 					t.setPoint(666);
-					System.out.println(t.getPoint());
 					list.add(t);
 				}
 				flag=0;
