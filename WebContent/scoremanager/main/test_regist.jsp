@@ -55,7 +55,6 @@
 				<div class="mt-2 text-warning">${errors.get("f1")}</div>
 			</div>
 		</form>
-
 		<c:choose>
 			<c:when test="${tests.size()>0}">
 				<form action="TestRegistExecute.action" method="get">
