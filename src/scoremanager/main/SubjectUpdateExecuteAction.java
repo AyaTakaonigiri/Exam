@@ -18,31 +18,34 @@ public class SubjectUpdateExecuteAction extends Action {
 		HttpSession session = request.getSession();//セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");//ログインユーザー
 
-		String cd = request.getParameter("cd");
+		String cd = "";
 		String name = "";
 		School school = new School();
 		Subject subject = new Subject();
 		SubjectDao subDao = new SubjectDao();
-		cd = subDao.get(cd, teacher.getSchool()).getCd();
+
+		cd = request.getParameter("cd");
 		name = request.getParameter("name");
 		school = teacher.getSchool();
 
 		subject = subDao.get(cd, school);
 
-		subject.setCd(cd);//科目コード
-		subject.setName(name);//科目名
-		subject.setSchool(teacher.getSchool());
-		System.out.println(teacher.getSchool());
-
-		//科目コードと科目名がnullでないときsaveを実行
-		if(cd != null && name != null) {
+		// 科目コードと科目名がnullでないときsaveを実行
+		if (subject != null && name != null) {
+			//入力された科目名をsubjectにセット
+			subject.setName(name);
+			//save実行
 			subDao.save(subject);
+			//subject_update_done.jspにフォワード
 			request.getRequestDispatcher("subject_update_done.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("SubjectUpdate.action").forward(request, response);
+			//レスポンス値をセット
+			request.setAttribute("code", cd);
+			request.setAttribute("name", name);
+			//エラーメッセージをセット
+			request.setAttribute("error", "科目が存在していません");
+			//subject_update.jspにフォワード
+			request.getRequestDispatcher("subject_update.jsp").forward(request, response);
 		}
 	}
 }
-
-
-
