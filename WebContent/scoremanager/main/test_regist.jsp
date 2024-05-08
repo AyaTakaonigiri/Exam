@@ -83,7 +83,6 @@
 									<td>${tests.student().getNo()}</td>
 										<input type="hidden" name="no_${tests.student().getNo()}" value="${tests.student().getNo()}"/>
 									<td>${tests.student().getName()}</td>
-
 									<td><input type="number" min="1" max="100" name="point_${tests.student().getNo()}" <c:if test="${tests.point!=666}">value="${tests.point}"</c:if>></td>
 
 								</tr>
