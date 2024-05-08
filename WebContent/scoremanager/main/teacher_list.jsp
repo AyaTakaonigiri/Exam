@@ -24,12 +24,13 @@
 						<tr>
 							<th>教員ID</th>
 							<th>教員名</th>
-							<th></th>
+							<th>所属校</th>
 						</tr>
 						<c:forEach var="teacher" items="${teachers}">
 							<tr>
 								<td>${teacher.id}</td>
 								<td>${teacher.name}</td>
+								<td>${school.name}</td>
 							</tr>
 						</c:forEach>
 					</table>

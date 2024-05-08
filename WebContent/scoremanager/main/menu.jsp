@@ -3,8 +3,13 @@
 <!--taglibディレクティブの記述-->
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/common/base.jsp">
-	<c:param name="content">
+	<c:param name="title">
+		得点管理システム
+	</c:param>
 
+	<c:param name="scripts"></c:param>
+
+	<c:param name="content">
 
 		<div style="display:flex">
 			<div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
@@ -35,7 +40,6 @@
 				<a href="TeacherList.action">教員管理</a>
 			</div>
 		</div>
-
 
 	</c:param>
 </c:import>

@@ -2,6 +2,12 @@
 <!--taglibディレクティブの記述-->
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/common/base.jsp">
+	<c:param name="title">
+		得点管理システム
+	</c:param>
+
+	<c:param name="scripts"></c:param>
+
 	<c:param name="content">
 		<p>学生情報登録</p>
 		<p>登録が完了しました</p>
