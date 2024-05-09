@@ -26,8 +26,8 @@
 					<label class="form-label" for="student-f1-select">科目</label>
 					<select class="form-select" id="student-f1-select" name="f2" required>
 						<option value="0">----------</option>
-						<c:forEach var="num" items="${subject_set}">
-							<option value="${num.getCd()}"<c:if test="${num.getCd()==f2}">selected</c:if>>${num.getName()}</option>
+						<c:forEach var="subject" items="${subject_set}">
+							<option value="${subject.cd}"<c:if test="${subject.getCd()==f2}">selected</c:if>>${subject.getName()}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -87,6 +87,7 @@
 									<td>${tests.student().getName()}</td>
 									<td><input type="number" min="1" max="100" name="point_${tests.student().getNo()}" <c:if test="${tests.point!=666}">value="${tests.point}"</c:if>></td>
 
+									<td><a href="TestDelete.action?no=${tests.student().getNo()}&point=${tests.point}&num=${f4}&subjectcd=${f5.getCd()}">点数の削除</a></td>
 								</tr>
 							</c:if>
 						</c:forEach>
