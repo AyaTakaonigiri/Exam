@@ -70,7 +70,7 @@
 							<th>学生番号</th>
 							<th>氏名</th>
 							<th>点数</th>
-
+							<th></th>
 
 						</tr>
 						<c:forEach var="tests" items="${tests}">
