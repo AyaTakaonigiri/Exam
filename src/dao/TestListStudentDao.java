@@ -51,7 +51,7 @@ public class TestListStudentDao extends Dao {
 
 		try {
 			//SQL文をセット
-			statement = connection.prepareStatement(baseSql);
+			statement = connection.prepareStatement(baseSql + "ORDER BY subject.cd ASC");
 			//学生番号をバインド
 			statement.setString(1, student.getNo());
 			//プリペアードステートメントを実行
@@ -88,7 +88,7 @@ public class TestListStudentDao extends Dao {
 
 	    try {
 	        // SQL文を科目コードでフィルタリングするように変更
-	        String sql = baseSql + " AND subject.cd = ?";
+	        String sql = baseSql + " AND subject.cd = ? ORDER BY subject.cd ASC";
 	        statement = connection.prepareStatement(sql);
 	        statement.setString(1, student.getNo());
 	        statement.setString(2, subjectCd);
