@@ -10,7 +10,7 @@
 		<!--選択された情報をloginに送る-->
 		<form action="TestDeleteExecute.action" method="post">
 			<!--サーブレット側に送るデータを入力する-->
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報削除</h2>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績情報削除</h2>
 			<div class="col-4">
 				入学年度<br>
 				${year}<br><br>
