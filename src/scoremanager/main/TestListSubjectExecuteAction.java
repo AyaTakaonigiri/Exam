@@ -74,9 +74,6 @@ public class TestListSubjectExecuteAction extends Action {
 		} else {
 			//nullの場合はエラーメッセージをセット
 			request.setAttribute("error", "入学年度とクラスと科目を選択してください");
-			request.setAttribute("f1", entYear);
-			request.setAttribute("f2", classNum);
-			request.setAttribute("f3", sub);
 			request.getRequestDispatcher("TestList.action").forward(request, response);
 		}
 
