@@ -77,7 +77,7 @@ public class TestRegistAction extends Action {
 
 
 		//絞り込み
-		if (entYear !=0 && !classnumStr.equals("0") && !subjectCd.equals("0") && countnum!=0){
+		if (entYear!=0&&!classnumStr.equals("0")&&!subjectCd.equals("0")&&countnum!=0){
 			tests = testDao.filter(entYear, classnumStr,subject,countnum, teacher.getSchool());
 			if(tests == null){
 				List<Student> students = null;
