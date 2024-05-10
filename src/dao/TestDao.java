@@ -38,15 +38,17 @@ public class TestDao extends Dao {
 			while(rSet.next()){
 				// テストインスタンスを初期化
 				Test t = new Test();
-				t.setStudent(stuDao.get(rSet.getString("student_no")));
-				t.setClassNum(rSet.getString("class_num"));
-				t.setSubject(subDao.get(rSet.getString("subject_cd"),school));
-				t.setSchool(schDao.get(rSet.getString("school_cd")));
-				t.setNo(rSet.getInt("no"));
-				t.setPoint(rSet.getInt("point"));
-				// リストに追加
-				list.add(t);
-				studentsno.add(rSet.getString("student_no"));
+				if(entYear == stuDao.get(rSet.getString("student_no")).getEntYear()){
+					t.setStudent(stuDao.get(rSet.getString("student_no")));
+					t.setClassNum(rSet.getString("class_num"));
+					t.setSubject(subDao.get(rSet.getString("subject_cd"),school));
+					t.setSchool(schDao.get(rSet.getString("school_cd")));
+					t.setNo(rSet.getInt("no"));
+					t.setPoint(rSet.getInt("point"));
+					// リストに追加
+					list.add(t);
+					studentsno.add(rSet.getString("student_no"));
+				}
 			}
 
 			// リザルトを全権走査
@@ -80,16 +82,12 @@ public class TestDao extends Dao {
 	public List<Test> filter(int entYear, String classNum, Subject subject, int num, School school) throws Exception {
 		// リストを初期化
 		List<Test> list = new ArrayList<>();
-
-
-
-
 		// コネクションを確立
 		Connection connection = getConnection();
 		// プリペアードステートメント
 		PreparedStatement statement = null;
 		// SQL文の条件
-		String condition = " and class_num = ? and subject_cd = ? and no = ?";
+		String condition = " and  class_num = ? and subject_cd = ? and no = ?";
 		// SQL文のソート
 		String order = " order by student_no asc";
 		// リザルトセット

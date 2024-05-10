@@ -41,8 +41,14 @@
 			<form action="LoginExecute.action" method="post">
 				<!--サーブレット側に送るデータを入力する-->
 				<div style="text-align:center">
-					<input type="text" name="id" placeholder="ID" required><br>
-					<input type="password" id="password" name="password" placeholder="パスワード" required><br>
+					<div style="text-align:center">
+						ID
+					</div>
+					<input type="text" name="id" placeholder="半角でご入力ください" required><br>
+					<div style="text-align:center">
+						PASSWORD
+					</div>
+					<input type="password" id="password" name="password" placeholder="20文字以内の半角英数字でご入力ください" required><br>
 					<input type="checkbox" id="showPassword"> パスワードを表示する
 				</div>
 				<br>

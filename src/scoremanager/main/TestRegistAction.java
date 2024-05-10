@@ -68,6 +68,7 @@ public class TestRegistAction extends Action {
 		if(entyearStr!=null) {
 			//数値に変換
 			entYear = Integer.parseInt(entyearStr);
+
 		}
 		req.setAttribute("f1", entyearStr);
 		if(subject!=null){
