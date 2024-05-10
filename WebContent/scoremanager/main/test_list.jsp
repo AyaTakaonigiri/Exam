@@ -84,7 +84,7 @@
 						</div>
 						<div class="col-md-5 col-sm-5">
 							<p>学生番号</p>
-							<input type="text" name="f4" value="${f4}">
+							<input type="text" name="f4" value="${f4}" required>
 						</div>
 						<br>
 						<br class="br-sp">
